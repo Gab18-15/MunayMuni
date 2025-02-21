@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trámites de Vivienda</title>
+    <link rel="stylesheet" href="tramitesdevivienda.css">
+    <script type="module" src="tramitesdevivienda.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="index.html"><img src="../img/logo_empresa.png" class="logo"></a></div>
+        <h1 class="titulo">URBANOTECH</h1>
+        <a href="login.html"><img src="../img/usuario.png" class="usuario"></a>
+      </header>
+    
+      <nav>
+        <ul class="nav-underline">
+          <li class="navegar"><a class="nav-link" href="../index.html">Inicio</a></li>
+          <li class="navegar"><a class="nav-link" href="../tramites/tramites.html">Trámites</a></li>
+          <li class="navegar"><a class="nav-link" href="./seguimiento.html">Seguimiento de Trámite</a></li>
+          <li class="navegar"><a class="nav-link" href="../proyectos/proyecto.html">Proyectos</a></li>
+          <li class="navegar"><a class="nav-link" href="../Mas info/informacion.html">Conoce más de nosotros</a></li>
+        </ul>
+      </nav>
+
+    <main>
+        <!-- Sección para ciudadanos -->
+        <section id="ciudadanoSection" class="d-none">
+            <h2>Solicitar Trámite de Vivienda</h2>
+            <p>Completa el formulario para realizar tu trámite.</p>
+            <form>
+                <label for="tipo">Tipo de Trámite:</label>
+                <input type="text" id="tipo" required>
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" required></textarea>
+                <button type="submit">Enviar Solicitud</button>
+            </form>
+        </section>
+
+        <!-- Sección para funcionarios -->
+        <section id="funcionarioSection" class="d-none">
+            <h2>Gestión de Trámites de Vivienda</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ciudadano</th>
+                        <th>Tipo de Trámite</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaVivienda"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Gestión Pública Municipal. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspecciones Técnicas</title>
+    <link rel="stylesheet" href="../style.css">
+    <script type="module" src="../auth.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="index.html"><img src="../img/logo_empresa.png" class="logo"></a></div>
+        <h1 class="titulo">URBANOTECH</h1>
+        <a href="login.html"><img src="../img/usuario.png" class="usuario"></a>
+      </header>
+    
+      <nav>
+        <ul class="nav-underline">
+          <li class="navegar"><a class="nav-link" href="../index.html">Inicio</a></li>
+          <li class="navegar"><a class="nav-link" href="../tramites/tramites.html">Trámites</a></li>
+          <li class="navegar"><a class="nav-link" href="./seguimiento.html">Seguimiento de Trámite</a></li>
+          <li class="navegar"><a class="nav-link" href="../proyectos/proyecto.html">Proyectos</a></li>
+          <li class="navegar"><a class="nav-link" href="../Mas info/informacion.html">Conoce más de nosotros</a></li>
+        </ul>
+      </nav>
+    <main>
+        <!-- Sección para ciudadanos -->
+        <section id="ciudadanoSection" class="d-none">
+            <h2>Solicitar Inspección Técnica</h2>
+            <p>Solicita una inspección llenando el formulario.</p>
+            <form>
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" required>
+                <label for="motivo">Motivo:</label>
+                <textarea id="motivo" required></textarea>
+                <button type="submit">Enviar Solicitud</button>
+            </form>
+        </section>
+
+        <!-- Sección para funcionarios -->
+        <section id="funcionarioSection" class="d-none">
+            <h2>Revisión de Inspecciones</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ciudadano</th>
+                        <th>Dirección</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaInspecciones"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Gestión Pública Municipal. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

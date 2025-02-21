@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Encabezado */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #c4d600;
+    padding: 40px 30px;
+    color: white;
+}
+
+.logo{
+    width: 300px;
+    display: flexbox;
+    justify-content: left;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0 ;
+}
+
+.titulo{
+    text-align: center;
+    margin-left: -55px;
+    font-family: "Roboto", serif;
+    font-optical-sizing: auto;
+}
+
+.usuario{
+    width: 55px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    border-radius: 50%; /* Si es un icono circular, puedes quitarlo si no lo necesitas */
+    box-shadow: 0 0 0 3px #000000; /* Contorno negro */
+}
+
+.usuario:hover{
+    transform: scale(1.1);
+    filter: invert(74%) sepia(100%) saturate(600%) hue-rotate(5deg) brightness(90%) contrast(120%);
+}
+
+/* Barra de navegacion */
+
+nav {
+    background-color: #888b8d;
+    padding: 5px 10px; /* Espacio alrededor del contenido del nav */
+}
+
+.nav-underline {
+    display: flex; /* Organiza los elementos de manera horizontal */
+    justify-content: center; /* Centra los elementos en el contenedor */
+    gap: 95px; /* Separación entre los elementos */
+    margin: 0; /* Elimina el margen por defecto */
+    padding: 0; /* Elimina el padding por defecto */
+}
+
+.navegar {
+    list-style: none;
+    text-align: center;
+    font-size: 20px;
+}
+
+.nav-link {
+    text-decoration: none; /* Elimina el subrayado predeterminado */
+    color: white; /* Color del texto */
+    padding: 8px 15px; /* Espaciado dentro de cada enlace */
+    border-radius: 5px; /* Bordes redondeados opcionales */
+    display: inline-block; /* Asegura que el padding no afecte la disposición */
+}
+
+.nav-link.disabled {
+    pointer-events: none; /* Desactiva la interactividad con el enlace */
+    color: #ccc; /* Color del enlace deshabilitado */
+}
+
+/* Tarjeta de seguimiento */
+
+.card-container {
+    display: flex;
+    justify-content: center; /* Centra la tarjeta en el contenedor */
+    margin: 35px;
+    padding: 20px;
+}
+.card {
+    width: 850px; /* Ajusta el tamaño de la tarjeta para que se vea horizontal */
+    display: flex; /* Usamos flexbox para distribuir los elementos dentro de la tarjeta */
+    flex-direction: row; /* Esto organiza los elementos de la tarjeta horizontalmente */
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    text-align: left; /* Cambié el texto a la izquierda para que quede bien en un diseño horizontal */
+}
+.card-img-top {
+    width: 550px; /* Ajusta el tamaño de la imagen */
+    height: 450px; /* Ajusta el tamaño de la imagen */
+    object-fit: cover;
+}
+.card-body {
+    background-color: rgb(164, 52, 58);
+    color: #fff;
+    padding: 20px;
+    padding-top: 90px;
+    flex: 1; /* Esto hace que el contenido ocupe el resto del espacio disponible */
+}
+.card-title {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+.card-text {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+.btn-primary {
+    background-color: #FFD700;
+    color: #000;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    margin-left: 73px;
+    margin-top: 30px;
+}
+.btn-primary:hover {
+    transform: scale(1.1);
+    background-color: orange;
+}
+
+
+/* Pie de página */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #000000;
+    color: white;
+    margin-top: 20px;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Contenedor que organiza el formulario y el gráfico */
+#seguimiento-container {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Alinear verticalmente */
+    gap: 30px; /* Espacio entre formulario y gráfico */
+    margin-top: 20px;
+}
+
+/* Formulario más compacto */
+#formSeguimiento {
+    background-color: #cddc39;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #666600;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    width: 260px; /* Ajustar tamaño */
+}
+
+/* Estilos del gráfico */
+#progress-container {
+    background-color: #cddc39;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 130px; /* Ajustar tamaño */
+}
+
+#progressCanvas {
+    width: 90px; /* Hacer el gráfico más pequeño */
+    height: 90px;
+}
+
+#progressText {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    margin-top: 5px;
+}
+
+
+
+#btnRevisar {
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: #ffcc00; /* Amarillo */
+    border: none;
+}
+
+
+
+
+#btnRevisar:hover {
+    background-color: #e6b800;
+}
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="registro.css">
+
+
+</head>
+<body>
+    <header>
+      <div class="logo"><a href="index.html"><img src="../img/logo_empresa.png" class="logo"></a></div>
+      <h1 class="titulo">URBANOTECH</h1>
+      <a href="login.html"><img src="../img/usuario.png" class="usuario"></a>
+    </header>
+  
+  
+      <nav>
+          <ul class="nav-underline">
+              <li class="navegar">
+                <a class="nav-link" aria-current="page" href="../index.html">Inicio</a>
+              </li>
+              <li class="navegar">
+                <a class="nav-link" href="../tramites/tramites.html">Tramites</a>
+              </li>
+              <li class="navegar">
+                <a class="nav-link" href="./seguimiento.html">Seguimiento de Tramite</a>
+              </li>
+              <li class="navegar">
+                  <a class="nav-link" href="../proyectos/proyecto.html">Proyectos</a>
+              </li>
+              <li class="navegar">
+                  <a class="nav-link" href="../Mas info/informacion.html">Conone más de nosotros</a>
+                </li>
+  
+          </ul>
+      </nav>
+  
+    
+    <main class="registro-container">
+        <h2>Registro de Usuario</h2>
+        <form id="registro-form">
+          <label for="nombre">Nombre Completo</label>
+          <input type="text" id="nombre" required>
+      
+          <label for="dni">DNI</label>
+          <input type="text" id="dni" required>
+      
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" required>
+      
+          <label for="rol">Rol</label>
+          <select id="rol">
+              <option value="ciudadano">Ciudadano</option>
+              <option value="funcionario">Funcionario Municipal</option>
+          </select>
+      
+          <button type="submit" id="btn">Registrarse</button>
+      </form>
+      
+      
+        <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+
+        
+
+    </main>
+    <footer>
+        <p>&copy; 2025 Gestión Pública Municipal. Todos los derechos reservados.</p>
+    </footer>
+    
+</body>
+<script type="module" src="../registro/registro.js"></script>
+<script type="module" src="../auth.js"></script>
+
+
+</html>

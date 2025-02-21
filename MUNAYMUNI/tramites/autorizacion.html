@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autorizaciones de Construcción</title>
+    <link rel="stylesheet" href="autorizacion.css">
+    <script defer src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js"></script>
+    <script defer src="../auth.js"></script>
+    <script defer src="autorizacion.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="index.html"><img src="../img/logo_empresa.png" class="logo"></a></div>
+        <h1 class="titulo">URBANOTECH</h1>
+        <a href="../registro/login.html"><img src="../img/usuario.png" class="usuario"></a>
+      </header>
+    
+      <nav>
+        <ul class="nav-underline">
+          <li class="navegar"><a class="nav-link" href="../index.html">Inicio</a></li>
+          <li class="navegar"><a class="nav-link" href="../tramites/tramites.html">Trámites</a></li>
+          <li class="navegar"><a class="nav-link" href="./seguimiento.html">Seguimiento de Trámite</a></li>
+          <li class="navegar"><a class="nav-link" href="../proyectos/proyecto.html">Proyectos</a></li>
+          <li class="navegar"><a class="nav-link" href="../Mas info/informacion.html">Conoce más de nosotros</a></li>
+        </ul>
+      </nav>
+    <header>
+        <h1>Autorizaciones de Construcción</h1>
+        <nav>
+            <a href="../index.html">Inicio</a>
+            <a href="../tramites.html">Trámites</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="contenidoCiudadano" style="display: none;">
+            <h2>Información para Ciudadanos</h2>
+            <p>Aquí puedes solicitar permisos de construcción...</p>
+        </div>
+
+        <div id="contenidoFuncionario" style="display: none;">
+            <h2>Gestión para Funcionarios</h2>
+            <p>Aquí puedes revisar y aprobar permisos de construcción...</p>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            firebase.auth().onAuthStateChanged(async (user) => {
+                if (user) {
+                    const token = await user.getIdTokenResult();
+                    const esFuncionario = token.claims.funcionario || false;
+                    
+                    if (esFuncionario) {
+                        document.getElementById("contenidoFuncionario").style.display = "block";
+                    } else {
+                        document.getElementById("contenidoCiudadano").style.display = "block";
+                    }
+                } else {
+                    window.location.href = "../login.html";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
