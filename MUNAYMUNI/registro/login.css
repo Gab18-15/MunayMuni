@@ -144,20 +144,20 @@ input, select {
     border-radius: 5px;
 }
 
-.btn {
-    background-color: #c4d600;
-    color: white;
-    padding: 10px;
+button[type="submit"] {
+    background-color: #FFD700; /* Amarillo dorado */
+    color: #000000; /* Negro */
     border: none;
-    cursor: pointer;
+    padding: 10px 15px;
     font-size: 16px;
+    cursor: pointer;
     border-radius: 5px;
-    transition: background 0.3s;
 }
 
-.btn:hover {
-    background-color: #a0b200;
+button[type="submit"]:hover {
+    background-color: #e6c200; /* Un tono más oscuro de amarillo para el efecto hover */
 }
+
 
 /* Pie de página */
 footer {
@@ -237,4 +237,24 @@ p a {
 
 p a:hover {
     text-decoration: underline;
+}
+
+/* Icono del chat */
+.chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    cursor: pointer;
+}
+
+/* Ventana del chat */
+#chat-frame {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 350px;
+    height: 400px;
+    border: none;
+    display: none;
 }

@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Manejo de formularios
     const formularios = {
-        login: { selector: ".login-container form", campos: ["email", "password"] },
-        registro: { selector: ".registro-container form", campos: ["nombre", "email", "password", "tipo_usuario"] },
+        login: { selector: ".login-container form", campos: ["dni", "password"] },
+        registro: { selector: ".registro-container form", campos: ["nombre", "dni", "password", "tipo_usuario"] },
         diagnostico: { selector: ".diagnostico-container form", campos: ["municipio", "evaluacion"] },
         contacto: { selector: ".contacto-container form", campos: ["nombre", "email", "mensaje"] }
     };
@@ -31,31 +31,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-/* Firebase Authentication */
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+/* Firebase */
+import { auth, db } from "../js/firebase-config.js";  // Asegúrate de la ruta correcta
 
-// ⚠️ Mueve la configuración a variables de entorno en backend si es posible
-const firebaseConfig = {
-    apiKey: "AIzaSyAQnPwCSfxQftT2WI8c5cf8oIBbhAmWK6Q",
-    authDomain: "habitad-para-la-humanidad.firebaseapp.com",
-    projectId: "habitad-para-la-humanidad",
-    storageBucket: "habitad-para-la-humanidad.firebasestorage.app",
-    messagingSenderId: "337876665141",
-    appId: "1:337876665141:web:239d6ae37273d3cb87827c"
-};
+console.log("Firebase cargado en main.js sin inicialización duplicada.");
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
 
-// Verificar estado de autenticación y redirigir según tipo de usuario
+// Verificación de autenticación
 onAuthStateChanged(auth, async (user) => {
-    console.log("Verificando autenticación...");
-
     if (user) {
-        console.log("Usuario detectado:", user.uid);
         let userRole = sessionStorage.getItem("userRole");
 
         if (!userRole) {
@@ -66,26 +50,25 @@ onAuthStateChanged(auth, async (user) => {
                     userRole = userDoc.data().tipoUsuario;
                     sessionStorage.setItem("userRole", userRole);
                 } else {
-                    console.error("Usuario autenticado sin datos en Firestore.");
+                    console.warn("Usuario sin datos en Firestore.");
                     return;
                 }
             } catch (error) {
-                console.error("Error al obtener datos del usuario en Firestore:", error);
+                console.error("Error obteniendo datos del usuario:", error);
                 return;
             }
         }
 
-        // Redirección según rol
+        // Redirección
         const currentPath = window.location.pathname;
-        if (userRole === "ciudadano" && !currentPath.includes("dashboard-ciudadano.html")) {
-            window.location.href = "dashboard-ciudadano.html";
-        } else if (userRole === "funcionario" && !currentPath.includes("dashboard-funcionario.html")) {
-            window.location.href = "dashboard-funcionario.html";
+        if (userRole === "ciudadano" && !currentPath.includes("../dashboard-ciudadano.html")) {
+            window.location.href = "../dashboard-ciudadano.html";
+        } else if (userRole === "funcionario" && !currentPath.includes("../dashboard-funcionario.html")) {
+            window.location.href = "../dashboard-funcionario.html";
         }
     } else {
-        console.log("No hay usuario autenticado.");
-        if (!window.location.pathname.endsWith("login.html") && !window.location.pathname.endsWith("registro.html")) {
-            window.location.href = "login.html";
+        if (!window.location.pathname.endsWith("../login.html") && !window.location.pathname.endsWith("../registro/registro.html")) {
+            window.location.href = "../login.html";
         }
     }
 });
@@ -99,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 await signOut(auth);
                 sessionStorage.removeItem("userRole");
                 alert("Sesión cerrada");
-                window.location.href = "login.html";
+                window.location.href = "../login.html";
             } catch (error) {
                 console.error("Error al cerrar sesión:", error);
             }
@@ -107,32 +90,70 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// Registro de usuario en Firebase
+// Registro con DNI
 const registerForm = document.querySelector(".registro-container form");
 if (registerForm) {
     registerForm.addEventListener("submit", async function (event) {
         event.preventDefault();
-        const email = document.getElementById("email").value.trim();
+        const dni = document.getElementById("dni").value.trim();
         const password = document.getElementById("password").value.trim();
         const tipoUsuario = document.getElementById("tipo_usuario").value.trim();
 
-        if (!email || !password || !tipoUsuario) {
+        if (!dni || !password || !tipoUsuario) {
             alert("Por favor, complete todos los campos.");
             return;
         }
 
         try {
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
-            console.log("Usuario registrado:", user.uid);
-
-            // Guardar información en Firestore
-            await setDoc(doc(db, "usuarios", user.uid), { email, tipoUsuario });
+            // Guardar en Firestore (Firebase Authentication no admite DNI directamente)
+            const userRef = doc(db, "usuarios", dni);
+            await setDoc(userRef, { dni, tipoUsuario, password });
 
             alert(`Registro exitoso como ${tipoUsuario}`);
             window.location.href = "dashboard.html";
         } catch (error) {
             console.error("Error en el registro:", error.message);
+            alert("Error: " + error.message);
+        }
+    });
+}
+
+// Inicio de sesión con DNI
+const loginForm = document.querySelector(".login-container form");
+if (loginForm) {
+    loginForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        const dni = document.getElementById("dni").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        if (!dni || !password) {
+            alert("Ingrese su DNI y contraseña.");
+            return;
+        }
+
+        try {
+            const userRef = doc(db, "usuarios", dni);
+            const userSnap = await getDoc(userRef);
+
+            if (!userSnap.exists()) {
+                alert("DNI no registrado.");
+                return;
+            }
+
+            const userData = userSnap.data();
+            if (userData.password !== password) {
+                alert("Contraseña incorrecta.");
+                return;
+            }
+
+            // Simulación de autenticación con custom token
+            const fakeToken = btoa(`${dni}:${password}`);
+            await signInWithCustomToken(auth, fakeToken);
+
+            alert("Inicio de sesión exitoso.");
+            window.location.href = "dashboard.html";
+        } catch (error) {
+            console.error("Error en el inicio de sesión:", error.message);
             alert("Error: " + error.message);
         }
     });

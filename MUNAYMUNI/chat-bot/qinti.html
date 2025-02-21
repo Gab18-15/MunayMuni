@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="qinti.css">
+</head>
+<body>
+
+   <!-- Icono de la mascota (para abrir/cerrar el chat) -->
+   <img id="chat-icon" src="../img/qinti.png" alt="Chat Bot">
+
+    <!-- Contenedor del chat -->
+    <div id="chat-container" class="hidden">
+        <div id="chat-header">
+            Q'inti
+        </div>
+        <div id="chat-box"></div>
+        <div id="chat-input">
+            <input type="text" id="user-input" placeholder="Escribe un mensaje..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+
+
+    <!-- Contenedor del chat -->
+    <div id="chat-container" class="hidden">
+        <div id="chat-header">Chat con Q'inti</div>
+        <div id="chat-box"></div>
+        <div id="chat-input">
+        <input type="text" id="user-input" placeholder="Escribe un mensaje..." onkeypress="handleKeyPress(event)">
+        <button onclick="sendMessage()">Enviar</button>
+    </div>
+
+
+    <script type="module" src="qinti.js"></script>
+</body>
+</html>

@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Gestión Pública Municipal</title>
-    <link rel="stylesheet" href="style.css">
-    <script type="module" src="auth.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
     <div class="logo"><a href="index.html"><img src="img/logo_empresa.png" class="logo"></a></div>
-    <h1 class="titulo">URBANOTECH</h1>
-    <a href="registro/login.html"><img src="img/usuario.png" class="usuario"></a>
+    <img src="img/nombrepag.png" class="titulo">
+    <a href="registro/login.html"><svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="52" height="52" class="usuario"><path d="M19,0H5A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V5A5.006,5.006,0,0,0,19,0ZM7,22V21a5,5,0,0,1,10,0v1Zm15-3a3,3,0,0,1-3,3V21A7,7,0,0,0,5,21v1a3,3,0,0,1-3-3V5A3,3,0,0,1,5,2H19a3,3,0,0,1,3,3Z"/><path d="M12,4a4,4,0,1,0,4,4A4,4,0,0,0,12,4Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,12,10Z"/></svg></a>  
   </header>
 
   <nav>
@@ -25,9 +24,6 @@
           </li>
           <li class="navegar">
               <a class="nav-link" href="seguimiento/seguimiento.html">Seguimiento de Tramite</a>
-          </li>
-          <li class="navegar">
-                <a class="nav-link" href="proyectos/proyecto.html">Proyectos</a>
           </li>
           <li class="navegar">
                 <a class="nav-link" href="Mas info/informacion.html">Conoce más de nosotros</a>
@@ -68,13 +64,19 @@
     
     <div class="mx-auto registro">
       <a href="registro/login.html" class="btn">Comienza registrándote aquí</a>
-  </div>
+    </div>
   
     <footer class="creditos">
         <p>&copy; 2025 Gestión Pública Municipal. Todos los derechos reservados.</p>
     </footer>
 
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Icono del chatbot -->
+    <img src="./img/qinti.png" id="chat-toggle" alt="ChatBot" class="chat-icon">
+
+    <!-- Contenedor del chat -->
+    <iframe id="chat-frame" src="chat-bot/qinti.html"></iframe>
+
+  <script type="module" src="auth.js"></script>
+
 </body>
 </html>

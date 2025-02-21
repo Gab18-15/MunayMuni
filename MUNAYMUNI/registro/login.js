@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAQnPwCSfxQftT2WI8c5cf8oIBbhAmWK6Q",
@@ -12,43 +13,40 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
-document.getElementById("registro-form").addEventListener("submit", async (e) => {
+document.getElementById("login-form").addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const dni = document.getElementById("dni").value;
     const password = document.getElementById("password").value;
-    const nombre = document.getElementById("nombre").value;
-    const rol = document.getElementById("rol").value; // "ciudadano" o "funcionario"
 
     try {
-        // Revisar si el DNI ya existe en Firestore
+        // Revisar si el DNI existe en Firestore
         const usuarioRef = doc(db, "usuarios", dni);
         const usuarioSnap = await getDoc(usuarioRef);
 
-        if (usuarioSnap.exists()) {
-            alert("❌ Este DNI ya está registrado.");
-        } else {
-            // Guardar usuario en Firestore
-            await setDoc(usuarioRef, {
-                dni: dni,
-                password: password, // Se recomienda cifrar en producción
-                nombre: nombre,
-                rol: rol
-            });
+        if (!usuarioSnap.exists()) {
+            alert("❌ El DNI no está registrado.");
+            return;
+        }
 
-            alert("✅ Registro exitoso.");
+        const usuarioData = usuarioSnap.data();
+
+        // Verificar que la contraseña coincide
+        if (usuarioData.password === password) {
+            alert("✅ Inicio de sesión exitoso.");
 
             // Redirigir según el rol
-            window.location.href = rol === "ciudadano"
-            ? "../dashboard-ciudadano.html"
-            : "../dashboard-funcionario.html";
-        
+            window.location.href = usuarioData.rol === "ciudadano"
+                ? "../dashboard-ciudadano.html"
+                : "../dashboard-funcionario.html";
+        } else {
+            alert("❌ Contraseña incorrecta.");
         }
+
     } catch (error) {
-        console.error("Error al registrar usuario:", error);
-        alert("⚠ Error al registrar usuario.");
+        console.error("Error al iniciar sesión:", error);
+        alert("⚠ Error al iniciar sesión.");
     }
 });
-
-

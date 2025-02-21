@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Ciudadano</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <script type="module" src="../auth.js"></script>
 </head>
 <body>
     <header>
         <div class="logo"><a href="index.html"><img src="img/logo_empresa.png" class="logo"></a></div>
-        <h1 class="titulo">URBANOTECH</h1>
-        <a href="registro/login.html"><img src="img/usuario.png" class="usuario"></a>
-      </header>
+        <img src="img/nombrepag.png" alt="">
+        <a href="registro/login.html"><svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="52" height="52" class="usuario"><path d="M19,0H5A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V5A5.006,5.006,0,0,0,19,0ZM7,22V21a5,5,0,0,1,10,0v1Zm15-3a3,3,0,0,1-3,3V21A7,7,0,0,0,5,21v1a3,3,0,0,1-3-3V5A3,3,0,0,1,5,2H19a3,3,0,0,1,3,3Z"/><path d="M12,4a4,4,0,1,0,4,4A4,4,0,0,0,12,4Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,12,10Z"/></svg></a>  
+    </header>
     
       <nav>
         <ul class="nav-underline">
@@ -42,5 +42,11 @@
     <footer>
         <p>&copy; 2025 Gestión Pública Municipal. Todos los derechos reservados.</p>
     </footer>
+
+    <!-- Icono del chatbot -->
+<img src="img/qinti.png" id="chat-toggle" alt="ChatBot" class="chat-icon">
+
+<!-- Contenedor del chat -->
+<iframe id="chat-frame" src="chat-bot/qinti.html"></iframe>
 </body>
 </html>

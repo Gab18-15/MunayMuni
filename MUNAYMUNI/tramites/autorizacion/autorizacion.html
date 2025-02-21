@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autorizaciones de Construcción</title>
+    <link rel="stylesheet" href="autorizacion.css">
+
+    <script defer src="../js/autorizacion.js"></script>
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <header>
+        <div class="logo"><a href="../index.html"><img src="../img/logo_empresa.png" class="logo"></a></div>
+        <img src="../img/nombrepag.png" class="titulo">
+        <a href="../registro/login.html"><svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="52" height="52" class="usuario"><path d="M19,0H5A5.006,5.006,0,0,0,0,5V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V5A5.006,5.006,0,0,0,19,0ZM7,22V21a5,5,0,0,1,10,0v1Zm15-3a3,3,0,0,1-3,3V21A7,7,0,0,0,5,21v1a3,3,0,0,1-3-3V5A3,3,0,0,1,5,2H19a3,3,0,0,1,3,3Z"/><path d="M12,4a4,4,0,1,0,4,4A4,4,0,0,0,12,4Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,12,10Z"/></svg></a>  
+      </header>
+
+    <!-- Navegación -->
+    <nav>
+        <ul class="nav-underline">
+            <li class="navegar"><a class="nav-link" href="../index.html">Inicio</a></li>
+            <li class="navegar"><a class="nav-link" href="../tramites/tramites.html">Trámites</a></li>
+            <li class="navegar"><a class="nav-link" href="./seguimiento.html">Seguimiento de Trámite</a></li>
+            <li class="navegar"><a class="nav-link" href="../proyectos/proyecto.html">Proyectos</a></li>
+            <li class="navegar"><a class="nav-link" href="../Mas info/informacion.html">Conoce más de nosotros</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main>
+        <section>
+            <h2>Autorizaciones de Construcción</h2>
+            <p>Accede a la sección que corresponde según tu rol.</p>
+
+            <!-- Contenido visible para Ciudadanos -->
+            <div id="ciudadano-content" class="d-none">
+                <h3>Información para Ciudadanos</h3>
+                <p>Aquí puedes solicitar permisos de construcción y seguir el proceso.</p>
+                <!-- Aquí puedes agregar el formulario o más detalles para el ciudadano -->
+            </div>
+
+            <!-- Contenido visible para Funcionarios -->
+            <div id="funcionario-content" class="d-none">
+                <h3>Gestión para Funcionarios</h3>
+                <p>Aquí puedes revisar y aprobar permisos de construcción.</p>
+                <!-- Aquí puedes agregar las herramientas o formularios para los funcionarios -->
+            </div>
+        </section>
+    </main>
+    <script defer src="../auth.js"></script>
+
+
+    <!-- Icono del chatbot -->
+<img src="chatbot/chat-icon.png" id="chat-toggle" alt="ChatBot" class="chat-icon">
+
+<!-- Contenedor del chat -->
+<iframe id="chat-frame" src="chatbot/chat.html"></iframe>
+
+</body>
+</html>
